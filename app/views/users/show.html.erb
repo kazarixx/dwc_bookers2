@@ -30,8 +30,8 @@
                           <%= f.text_field :title %>
                           <h4>Opinion</h4>
                           <%= f.text_area :body %>
+                          <%= f.submit 'Create Book', class:'btn btn-success'%>
                         <% end %>
-                            <a><%= link_to "Create Book", books_path , method: :post, class:'btn btn-success'%></a>
                     </div>
                     <!--左側終-->
                     <div class="col-md-8 offset-md-1">
@@ -43,16 +43,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% @Users.each do |user| %>
+                                <% @Books.each do |book| %>
                                 <tr>
                                     <td><%= attachment_image_tag @User, :profile_image , size: "50x50" %></td>
-                                    <% end %>
-                                    <% @Books.each do |book| %>
-                                    <td><%= book.title %></td>
-                                    <td> %= link_to book.title, book_path(book.id) %></td>
+                                    <td><%= link_to book.title, book_path(book.id) %></td>
                                     <td><%= book.body %></td>
-                                    <% end %>
                                 </tr>
+                                <% end %>
                             </tbody>
                         </table>
                     </div>
