@@ -3,14 +3,14 @@ class UsersController < ApplicationController
     @book = Book.new
     @User = User.find(current_user.id)
     @Users = User.all
-    @Books = Book.all
+    @Books = @User.books
   end
 
   def show
     @book = Book.new
     @User = User.find(params[:id])
     @Users = User.all
-    @Books = Book.all
+    @Books = @User.books
   end
 
 

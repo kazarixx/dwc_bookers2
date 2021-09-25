@@ -1,10 +1,16 @@
 class BooksController < ApplicationController
   def index
+    # 共通部分のアクション
     @book = Book.new
+    @User = User.find(current_user.id)
+     # 
+    @Books = Book.all
   end
 
   def show
-    @book=Book.find(params[:id])
+    @book = Book.new
+    @User = User.find(current_user.id)
+    @Book = Book.find(params[:id]) 
   end
   
   def create
@@ -15,6 +21,7 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @book = Book.find(params[:id]) 
   end
   
   def destroy
