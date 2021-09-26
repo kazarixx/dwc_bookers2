@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+      before_action :authenticate_user!
+      
   def index
     # 共通部分のアクション
     @book = Book.new
@@ -9,8 +11,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.new
-    @User = User.find(current_user.id)
     @Book = Book.find(params[:id]) 
+    @User = User.find(@Book.user_id)
   end
   
   def create
@@ -21,23 +23,29 @@ class BooksController < ApplicationController
      redirect_to book_path(@book.id)
      flash[:notice]="You have created book successfully."
     else
-     @book = Book.new
      @User = User.find(current_user.id)
      @Books = Book.all
      render :index
-     flash[:alert]
     end
   end
 
   def edit
     @book = Book.find(params[:id]) 
+    if @book.user_id == current_user.id
+     render :edit
+    else
+     redirect_to books_path
+    end
   end
   
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book.id)
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+    redirect_to book_path(@book.id)
     flash[:notice]="You have updated book successfully."
+    else
+     render :edit
+    end
   end
   
   def destroy
