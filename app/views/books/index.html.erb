@@ -32,6 +32,7 @@
                                     <% else %>
                                     <td><%= link_to book_favorites_path(book.id), method: :post do %>♥<%= book.favorites.count %>いいね<% end %></td>
                                     <% end %>
+                                    <td>コメント数：<%= book.book_comments.count %></td>
                                 </tr>
                                 <% end %>
                             </tbody>
