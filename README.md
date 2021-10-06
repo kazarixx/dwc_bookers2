@@ -23,3 +23,5 @@ Things you may want to cover:
 
 * ...
 10/6 [finish]応用課題３
+10/6 [start]応用課題4　モデル作成まで
+10/6 [finish]応用課題4　フォローフォロワー機能実装完了
