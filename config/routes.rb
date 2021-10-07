@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :books , only: [:index, :create, :index, :show, :edit, :update, :destroy] do
    resource :favorites, only: [:create, :destroy]
    resources :book_comments, only: [:create, :destroy]
- end
- 
+  end
+  
+  get '/search' => 'search#search'
+  
   devise_for :users
   resources :users, only: [:index, :show, :edit, :update] do
    resource :relationship, only: [:create, :destroy]
